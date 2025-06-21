@@ -1,103 +1,128 @@
-import Image from "next/image";
+'use client'; // Wajib! Karena Swiper butuh DOM (client-side)
 
-export default function Home() {
+import React from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css'; // Import style Swiper
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
+import { Autoplay, Navigation, Pagination } from 'swiper/modules';
+export default function HomePage() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <>
+      <div className="bg-cover bg-center">
+        <Swiper className="swiperNav swiperNav2 mySwiperNav  w-full overflow-hidden"
+          modules={[Autoplay]}
+          autoplay={{ delay: 3000 }}
+          spaceBetween={30}
+          slidesPerView={1}>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          <SwiperSlide className="swiper-slide flex flex-col items-center w-auto"><img src="images/nav/JN1A3942.webp" />
+          </SwiperSlide>
+          <SwiperSlide className="swiper-slide flex flex-col items-center w-auto"><img src="images/nav/JN1A3943.webp" />
+          </SwiperSlide>
+          <SwiperSlide className="swiper-slide flex flex-col items-center w-auto"><img src="images/nav/JN1A3935_new.webp" />
+          </SwiperSlide>
+          <SwiperSlide className="swiper-slide flex flex-col items-center w-auto"><img src="images/nav/JN1A3958.webp" />
+          </SwiperSlide>
+          <SwiperSlide className="swiper-slide flex flex-col items-center w-auto"><img src="images/nav/JN1A3994.webp" />
+          </SwiperSlide>
+
+          <SwiperSlide className="swiper-slide flex flex-col items-center w-auto"><img src="images/nav/JN1A4141.webp" />
+          </SwiperSlide>
+          <SwiperSlide className="swiper-slide flex flex-col items-center w-auto"><img src="images/nav/JN1A4143.webp" />
+          </SwiperSlide>
+          <SwiperSlide className="swiper-slide flex flex-col items-center w-auto"><img src="images/nav/JN1A4148.webp" />
+          </SwiperSlide>
+        </Swiper>
+
+
+      </div>
+      <section className="relative overflow-hidden bg-orange-50 py-20">
+        <div
+          className="absolute -top-20 -left-20 w-[500px] h-[500px] -z-10 animate-blob mix-blend-multiply opacity-50 blur-sm">
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+            <path fill="#F59E0B"
+              d="M41.6,-65.5C53.9,-56.1,63.7,-44.1,66.9,-30.9C70.2,-17.7,66.9,-3.4,63.5,11.8C60.1,27.1,56.5,43.2,46.4,53.3C36.2,63.4,19.6,67.5,2.9,64.1C-13.8,60.7,-27.5,49.8,-36.2,38C-44.8,26.2,-48.3,13.6,-52.6,-1.1C-56.9,-15.8,-62,-31.6,-56.6,-43.6C-51.1,-55.5,-35.1,-63.6,-19.1,-69C-3,-74.5,13.1,-77.2,27.1,-72.5C41.2,-67.8,54.4,-55,41.6,-65.5Z"
+              transform="translate(100 100)" />
+          </svg>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+
+        <div className="max-w-6xl mx-auto px-6 md:px-10 grid grid-cols-1 md:grid-cols-2 gap-5 items-center">
+
+          <img src="images/logo_baru_2-removebg-preview.png" alt="" />
+
+
+          <div className="text-gray-600 font-inter text-lg leading-relaxed">
+            <div>
+              Bukan sekadar camilan— <br />
+
+              ini adalah pengalaman rasa yang bikin nagih dari gigitan pertama. <br /><br />
+
+
+
+              Dibuat dengan bahan premium dan dipanggang dengan cinta, setiap
+              cookie punya tekstur soft & chewy yang meleleh di mulut, dengan
+              rasa manis pas yang bikin kamu pengen lagi dan lagi.
+            </div>
+          </div>
+        </div>
+        <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 gap-5 items-center">
+
+          <div className="text-gray-600 font-source text-2xl leading-relaxed text-center mt-8">
+            <strong>-Where Every Bite Becomes an Addiction-</strong>
+          </div>
+        </div>
+      </section>
+      <Swiper className="bg-orange-50 swiper mySwiper pb-10"
+        modules={[Autoplay, Navigation, Pagination]}
+        pagination={{ clickable: true, }}
+        loop={true}
+        centeredSlides={true}
+        autoplay={{ delay: 3000 }}
+        spaceBetween={30}
+        slidesPerView={4}
+        style={{ paddingBottom: '40px' }} >
+        <div className="swiper-wrapper">
+          <SwiperSlide className="swiper-slide flex flex-col items-center">
+            <a href="product-detail/classic.html"><img src="images/product/1.webp" alt="Classic" />
+              <p className="text-center mt-2">Classic</p>
+            </a>
+          </SwiperSlide>
+          <SwiperSlide className="swiper-slide flex flex-col items-center">
+            <a href="product-detail/original.html"><img src="images/product/2.webp" alt="Classic" />
+              <p className="text-center mt-2">OG with Marshmallow</p>
+            </a>
+          </SwiperSlide>
+          <SwiperSlide className="swiper-slide flex flex-col items-center">
+            <a href="product-detail/original.html"><img src="images/product/7.webp" alt="Classic" />
+              <p className="text-center mt-2">Biscoff</p>
+            </a>
+          </SwiperSlide>
+          <SwiperSlide className="swiper-slide flex flex-col items-center">
+            <a href="product-detail/double-choco.html"><img src="images/product/3.webp"
+              className=" transform [rotate:45deg]" alt="Double Choco" />
+              <p className="text-center mt-2">Double Choco</p>
+            </a>
+          </SwiperSlide>
+          <SwiperSlide className="swiper-slide flex flex-col items-center">
+            <a href="product-detail/black-caramel.html"><img src="images/product/4.webp" alt="Black Caramel" />
+              <p className="text-center mt-2">Black Caramel</p>
+            </a>
+          </SwiperSlide>
+          <SwiperSlide className="swiper-slide flex flex-col items-center">
+            <a href="product-detail/matcha.html"><img src="images/product/5.webp" alt="Matcha" />
+              <p className="text-center mt-2">Matcha</p>
+            </a>
+          </SwiperSlide>
+          <SwiperSlide className="swiper-slide flex flex-col items-center">
+            <a href="product-detail/red-velvet.html"><img src="images/product/6.webp" alt="Red Velvet" />
+              <p className="text-center mt-2">Red Velvet</p>
+            </a>
+          </SwiperSlide>
+        </div>
+        <div className="swiper-pagination"></div>
+      </Swiper>
+    </>
+  )
 }
