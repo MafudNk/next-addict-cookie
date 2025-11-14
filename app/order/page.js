@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation'
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 const cookies = [
     { id: 1, name: "Classic", price: 23000, img: "images/product/1.webp", qty: 0 },
     { id: 2, name: "OG with Marshmallow", price: 21500, img: "images/product/2.webp", qty: 0 },
@@ -72,9 +73,11 @@ export default function OrderPage() {
             {items.map((item, index) => (
                 <div key={item.id} className="flex justify-between items-center mb-3">
                     <div className="flex items-center gap-3">
-                        <img
-                            src={item.img}
+                        <Image
+                            src={`/${item.img}`}
                             alt={item.name}
+                            width={64}
+                            height={64}
                             className="w-16 h-16 object-cover rounded"
                         />
                         <div className="flex-1">
