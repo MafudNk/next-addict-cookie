@@ -1,22 +1,23 @@
 import { google } from "googleapis";
 import { NextResponse } from "next/server";
+import { google } from "googleapis";
 import { JWT } from "google-auth-library";
-import credentials from "@/config/credentials.json";
 
 export async function POST(req) {
   try {
     const body = await req.json();
     const { order, nama, alamat, pengiriman, pesan, total } = body;
-
+      // email: credentials.client_email,
+      // key: credentials.private_key,
     const client = new JWT({
-      email: credentials.client_email,
-      key: credentials.private_key,
+      email: process.env.GOOGLE_SERVICE_ACCOUNT.client_email,
+      key: process.env.GOOGLE_SERVICE_ACCOUNT.private_key,
       scopes: ["https://www.googleapis.com/auth/spreadsheets"],
     });
 
     const sheets = google.sheets({ version: "v4", auth: client });
 
-    const spreadsheetId = "1eavy18b18RHH2gDECkCEC2g-TLsio2y4WmYcjLHbXRg";
+    const spreadsheetId = process.env.GOOGLE_SHEET_ID;
     const waktu = new Date().toLocaleString();
 
     // order = array => Classic, OG, Biscoff, dst
