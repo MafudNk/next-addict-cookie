@@ -1,12 +1,12 @@
 import { google } from "googleapis";
 import { NextResponse } from "next/server";
 import { JWT } from "google-auth-library";
-import credentials from "@/lib/credentials.json";
+import credentials from "@/config/credentials.json";
 
 export async function POST(req) {
   try {
     const body = await req.json();
-    const { nama, alamat, pengiriman, pesanan } = body;
+    const { order, nama, alamat, pengiriman, pesan, total } = body;
 
     const client = new JWT({
       email: credentials.client_email,
@@ -16,26 +16,29 @@ export async function POST(req) {
 
     const sheets = google.sheets({ version: "v4", auth: client });
 
-    const spreadsheetId = "SPREADSHEET_ID_KAMU";
+    const spreadsheetId = "1eavy18b18RHH2gDECkCEC2g-TLsio2y4WmYcjLHbXRg";
     const waktu = new Date().toLocaleString();
 
-    const values = pesanan.map(item => [
+    // order = array => Classic, OG, Biscoff, dst
+    const values = order.map(item => [
       nama,
       alamat,
       pengiriman,
-      item.produk,
-      item.jumlah,
-      item.harga,
-      waktu,
+      item.name,
+      item.price,
+      item.qty,
+      total,
+      pesan,
+      waktu
     ]);
 
     const result = await sheets.spreadsheets.values.append({
       spreadsheetId,
       range: "Sheet1!A1",
-      valueInputOption: "USER_ENTERED",
+      valueInputOption: "RAW",
       requestBody: {
-        values,
-      },
+        values: values
+      }
     });
 
     console.log("✅ Data berhasil ditulis:", result.data);
