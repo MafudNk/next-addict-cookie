@@ -9,13 +9,13 @@ export default function SuccessPage() {
           Pesanan kamu sudah diterima. Tim kami akan segera menghubungi kamu untuk konfirmasi selanjutnya.
         </p>
 
-        <a
-          href="/"
-          className="inline-block bg-orange-500 hover:bg-orange-600 text-white px-5 py-3 rounded-lg"
-        >
-          Kembali ke Beranda
-        </a>
+        <Link href="/" passHref>
+          <a className="inline-block bg-orange-500 hover:bg-orange-600 text-white px-5 py-3 rounded-lg">
+            Kembali ke Beranda
+          </a>
+        </Link>
       </div>
     </div>
   );
 }
+
