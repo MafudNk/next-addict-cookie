@@ -1,6 +1,5 @@
 import { google } from "googleapis";
 import { NextResponse } from "next/server";
-import { google } from "googleapis";
 import { JWT } from "google-auth-library";
 
 export async function POST(req) {
