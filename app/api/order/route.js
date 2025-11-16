@@ -9,8 +9,8 @@ export async function POST(req) {
       // email: credentials.client_email,
       // key: credentials.private_key,
     const client = new JWT({
-      email: process.env.GOOGLE_SERVICE_ACCOUNT.client_email,
-      key: process.env.GOOGLE_SERVICE_ACCOUNT.private_key,
+      email: process.env.GOOGLE_SERVICE_ACCOUNT.client_email.replace(/\\n/g, "\n"),
+      key: process.env.GOOGLE_SERVICE_ACCOUNT.private_key.replace(/\\n/g, "\n"),
       scopes: ["https://www.googleapis.com/auth/spreadsheets"],
     });
 
