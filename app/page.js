@@ -1,6 +1,7 @@
 'use client'; // Wajib! Karena Swiper butuh DOM (client-side)
 
 import React from 'react';
+import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css'; // Import style Swiper
 import 'swiper/css/navigation';
@@ -17,22 +18,30 @@ export default function HomePage() {
           spaceBetween={30}
           slidesPerView={1}>
 
-          <SwiperSlide className="swiper-slide flex flex-col items-center w-auto"><img src="images/nav/JN1A3942.webp" />
+          <SwiperSlide className="swiper-slide flex flex-col items-center w-auto">
+            <Image src="/images/nav/JN1A3942.webp" alt="" width={1200} height={800} className="max-w-full h-auto" />
           </SwiperSlide>
-          <SwiperSlide className="swiper-slide flex flex-col items-center w-auto"><img src="images/nav/JN1A3943.webp" />
+          <SwiperSlide className="swiper-slide flex flex-col items-center w-auto">
+            <Image src="/images/nav/JN1A3943.webp" alt="" width={1200} height={800} className="max-w-full h-auto" />
           </SwiperSlide>
-          <SwiperSlide className="swiper-slide flex flex-col items-center w-auto"><img src="images/nav/JN1A3935_new.webp" />
+          <SwiperSlide className="swiper-slide flex flex-col items-center w-auto">
+            <Image src="/images/nav/JN1A3935_new.webp" alt="" width={1200} height={800} className="max-w-full h-auto" />
           </SwiperSlide>
-          <SwiperSlide className="swiper-slide flex flex-col items-center w-auto"><img src="images/nav/JN1A3958.webp" />
+          <SwiperSlide className="swiper-slide flex flex-col items-center w-auto">
+            <Image src="/images/nav/JN1A3958.webp" alt="" width={1200} height={800} className="max-w-full h-auto" />
           </SwiperSlide>
-          <SwiperSlide className="swiper-slide flex flex-col items-center w-auto"><img src="images/nav/JN1A3994.webp" />
+          <SwiperSlide className="swiper-slide flex flex-col items-center w-auto">
+            <Image src="/images/nav/JN1A3994.webp" alt="" width={1200} height={800} className="max-w-full h-auto" />
           </SwiperSlide>
 
-          <SwiperSlide className="swiper-slide flex flex-col items-center w-auto"><img src="images/nav/JN1A4141.webp" />
+          <SwiperSlide className="swiper-slide flex flex-col items-center w-auto">
+            <Image src="/images/nav/JN1A4141.webp" alt="" width={1200} height={800} className="max-w-full h-auto" />
           </SwiperSlide>
-          <SwiperSlide className="swiper-slide flex flex-col items-center w-auto"><img src="images/nav/JN1A4143.webp" />
+          <SwiperSlide className="swiper-slide flex flex-col items-center w-auto">
+            <Image src="/images/nav/JN1A4143.webp" alt="" width={1200} height={800} className="max-w-full h-auto" />
           </SwiperSlide>
-          <SwiperSlide className="swiper-slide flex flex-col items-center w-auto"><img src="images/nav/JN1A4148.webp" />
+          <SwiperSlide className="swiper-slide flex flex-col items-center w-auto">
+            <Image src="/images/nav/JN1A4148.webp" alt="" width={1200} height={800} className="max-w-full h-auto" />
           </SwiperSlide>
         </Swiper>
 
@@ -50,7 +59,7 @@ export default function HomePage() {
 
         <div className="max-w-6xl mx-auto px-6 md:px-10 grid grid-cols-1 md:grid-cols-2 gap-5 items-center">
 
-          <img src="images/logo_baru_2-removebg-preview.png" alt="" />
+          <Image src="/images/logo_baru_2-removebg-preview.png" alt="" width={400} height={200} className="max-w-full h-auto" />
 
 
           <div className="text-gray-600 font-inter text-lg leading-relaxed">
@@ -85,38 +94,38 @@ export default function HomePage() {
         style={{ paddingBottom: '40px' }} >
         <div className="swiper-wrapper">
           <SwiperSlide className="swiper-slide flex flex-col items-center">
-            <a href="product-detail/classic.html"><img src="images/product/1.webp" alt="Classic" />
+            <a href="product-detail/classic.html"><Image src="/images/product/1.webp" alt="Classic" width={300} height={300} className="max-w-full h-auto" />
               <p className="text-center mt-2">Classic</p>
             </a>
           </SwiperSlide>
           <SwiperSlide className="swiper-slide flex flex-col items-center">
-            <a href="product-detail/original.html"><img src="images/product/2.webp" alt="Classic" />
+            <a href="product-detail/original.html"><Image src="/images/product/2.webp" alt="Classic" width={300} height={300} className="max-w-full h-auto" />
               <p className="text-center mt-2">OG with Marshmallow</p>
             </a>
           </SwiperSlide>
           <SwiperSlide className="swiper-slide flex flex-col items-center">
-            <a href="product-detail/original.html"><img src="images/product/7.webp" alt="Classic" />
+            <a href="product-detail/original.html"><Image src="/images/product/7.webp" alt="Classic" width={300} height={300} className="max-w-full h-auto" />
               <p className="text-center mt-2">Biscoff</p>
             </a>
           </SwiperSlide>
           <SwiperSlide className="swiper-slide flex flex-col items-center">
-            <a href="product-detail/double-choco.html"><img src="images/product/3.webp"
+            <a href="product-detail/double-choco.html"><Image src="/images/product/3.webp" width={300} height={300}
               className=" transform [rotate:45deg]" alt="Double Choco" />
               <p className="text-center mt-2">Double Choco</p>
             </a>
           </SwiperSlide>
           <SwiperSlide className="swiper-slide flex flex-col items-center">
-            <a href="product-detail/black-caramel.html"><img src="images/product/4.webp" alt="Black Caramel" />
+            <a href="product-detail/black-caramel.html"><Image src="/images/product/4.webp" alt="Black Caramel" width={300} height={300} className="max-w-full h-auto" />
               <p className="text-center mt-2">Black Caramel</p>
             </a>
           </SwiperSlide>
           <SwiperSlide className="swiper-slide flex flex-col items-center">
-            <a href="product-detail/matcha.html"><img src="images/product/5.webp" alt="Matcha" />
+            <a href="product-detail/matcha.html"><Image src="/images/product/5.webp" alt="Matcha" width={300} height={300} className="max-w-full h-auto" />
               <p className="text-center mt-2">Matcha</p>
             </a>
           </SwiperSlide>
           <SwiperSlide className="swiper-slide flex flex-col items-center">
-            <a href="product-detail/red-velvet.html"><img src="images/product/6.webp" alt="Red Velvet" />
+            <a href="product-detail/red-velvet.html"><Image src="/images/product/6.webp" alt="Red Velvet" width={300} height={300} className="max-w-full h-auto" />
               <p className="text-center mt-2">Red Velvet</p>
             </a>
           </SwiperSlide>

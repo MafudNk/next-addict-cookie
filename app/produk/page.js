@@ -1,5 +1,6 @@
 
 import Link from "next/link";
+import Image from "next/image";
 export default function ProductPage() {
     const cookies = [
         { id: 1, name: "Classic", price: 23000, img: "images/product/1.webp" },
@@ -16,10 +17,12 @@ export default function ProductPage() {
                 {cookies.map((product) => (
                     <Link key={product.id} href={`/produk/${product.id}`}>
                         <div className="bg-orange-45 rounded-2xl shadow p-4 flex flex-col items-center">
-                            <img
-                                src={product.img}
+                            <Image
+                                src={`/${product.img}`}
                                 alt={product.name}
-                                className="w-45 h-45 object-cover rounded-full mx-auto"
+                                width={180}
+                                height={180}
+                                className="object-cover rounded-full mx-auto"
                             />
                             <h3 className="text-lg font-semibold text-center">{product.name}</h3>
                         </div>

@@ -18,31 +18,38 @@ export default function SummaryPage() {
 
   const total = order.reduce((acc, item) => acc + item.price * item.qty, 0)
 
-  const handleSubmit = async () => {
-    // e.preventDefault()
+  const handleSubmit = async (e) => {
+    e.preventDefault()
 
-    // const finalData = {
-    //   order,
-    //   nama,
-    //   alamat,
-    //   pengiriman,
-    //   pesan,
-    //   total,
-    // }
+    const finalData = {
+      order,
+      nama,
+      alamat,
+      pengiriman,
+      pesan,
+      total,
+    }
+    console.log("FINAL DATA:", finalData);  // ✔️ Aman terbaca
 
-    await fetch("/api/order", {
+    const res = await fetch("/api/order", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        nama: "Mafud",
-        alamat: "Jalan Mangga",
-        pesan: "2 Cookie OG",
-      }),
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(finalData)
     });
+
+    const data = await res.json();
+    localStorage.removeItem('orderData')
+    console.log("RESPONSE:", data);
+    if (data.success) {
+      router.push("/success");
+    }
+    // e.preventDefault()
     // Sementara: tampilkan di console
     // console.log('Data dikirim:', finalData)
 
-    // // Simulasi kirim atau navigasi selesai
+    // Simulasi kirim atau navigasi selesai
     // alert('Pesanan berhasil dikirim!')
 
     // // Bersihkan localStorage kalau perlu
