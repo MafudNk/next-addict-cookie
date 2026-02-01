@@ -113,7 +113,7 @@ export default function AdminPage() {
                             </td>
                             <td className="border p-2">Rp {order.total}</td>
                             <td className="border p-2">{order.pembayaran}</td>
-                            <td className="border p-2">{order.pengiriman}</td>
+                            <td className="border p-2"><p className="font-bold">{order.pengiriman}</p> {order.alamat}</td>
                             <td className="border p-2">
                                 <select
                                     value={order.status}
