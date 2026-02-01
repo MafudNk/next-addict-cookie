@@ -13,7 +13,17 @@ export default function AdminPage() {
         setOrders(data.data || []);
         setLoading(false);
     };
-
+    const statusStyle = {
+        pending: "bg-yellow-100 text-yellow-700",
+        paid: "bg-blue-100 text-blue-700",
+        dikirim: "bg-purple-100 text-purple-700",
+        done: "bg-green-100 text-green-700",
+    };
+    const [filter, setFilter] = useState("all");
+    const filteredOrders =
+        filter === "all"
+            ? orders
+            : orders.filter(o => o.status === filter);
     useEffect(() => {
         const key = prompt("Masukkan admin key");
 
@@ -48,6 +58,32 @@ export default function AdminPage() {
         <div className="p-6">
             <h1 className="text-2xl font-bold mb-4">Admin Orders</h1>
 
+            {/* 🔹 SUMMARY BAR */}
+            <div className="flex gap-4 mb-4 text-sm">
+                <div>
+                    📦 Total Order: <b>{orders.length}</b>
+                </div>
+                <div>
+                    🕒 Pending:{" "}
+                    <b>{orders.filter(o => o.status === "pending").length}</b>
+                </div>
+                <div>
+                    💰 Paid:{" "}
+                    <b>{orders.filter(o => o.status === "paid").length}</b>
+                </div>
+            </div>
+            <div className="flex gap-2 mb-4">
+                {["all", "pending", "paid", "dikirim", "done"].map(s => (
+                    <button
+                        key={s}
+                        onClick={() => setFilter(s)}
+                        className={`px-3 py-1 rounded border text-sm ${filter === s ? "bg-orange-500 text-white" : "bg-white"
+                            }`}
+                    >
+                        {s.toUpperCase()}
+                    </button>
+                ))}
+            </div>
             <table className="w-full border text-sm">
                 <thead className="bg-gray-100">
                     <tr>
@@ -62,7 +98,7 @@ export default function AdminPage() {
                 </thead>
 
                 <tbody>
-                    {orders.map((order) => (
+                    {filteredOrders.map((order) => (
                         <tr key={order.orderId}>
                             <td className="border p-2">{order.orderId}</td>
                             <td className="border p-2">{order.nama}</td>
@@ -84,7 +120,7 @@ export default function AdminPage() {
                                     onChange={(e) =>
                                         updateStatus(order.orderId, e.target.value)
                                     }
-                                    className="border rounded px-2 py-1"
+                                    className={`px-2 py-1 rounded text-sm font-medium ${statusStyle[order.status]}`}
                                 >
                                     <option value="pending">Pending</option>
                                     <option value="paid">Paid</option>
