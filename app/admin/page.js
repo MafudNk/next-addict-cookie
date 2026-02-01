@@ -54,8 +54,6 @@ export default function AdminPage() {
                         <th className="border p-2">OrderID</th>
                         <th className="border p-2">Nama</th>
                         <th className="border p-2">Item</th>
-                        <th className="border p-2">Harga</th>
-                        <th className="border p-2">Qty</th>
                         <th className="border p-2">Total</th>
                         <th className="border p-2">Pembayaran</th>
                         <th className="border p-2">Pengiriman</th>
