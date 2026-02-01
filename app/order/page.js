@@ -67,11 +67,25 @@ export default function OrderPage() {
     }
 
     return (
-        <div className="max-w-xl mx-auto p-6 rounded-xl shadow-md bg-orange-50">
-            <h2 className="text-2xl font-bold mb-4">🛒 Pesan Cookies</h2>
+        <div className="max-w-xl mx-auto p-4 md:p-6 rounded-xl shadow-md bg-orange-50">
+            <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-4">
+                🛒 Pesan Cookies
+            </h2>
 
             {items.map((item, index) => (
-                <div key={item.id} className="flex justify-between items-center mb-3">
+                <div
+                    key={item.id}
+                    className="
+          flex flex-col
+          md:flex-row
+          md:items-center
+          md:justify-between
+          gap-3
+          py-3
+          border-b border-orange-100
+        "
+                >
+                    {/* KIRI: gambar + info */}
                     <div className="flex items-center gap-3">
                         <Image
                             src={`/${item.img}`}
@@ -80,41 +94,62 @@ export default function OrderPage() {
                             height={64}
                             className="w-16 h-16 object-cover rounded"
                         />
-                        <div className="flex-1">
-                            <div className="font-semibold">{item.name}</div>
-                            <div className="text-sm text-gray-500 mt-1">
-                                Rp {item.price.toLocaleString()}
 
+                        <div>
+                            <div className="font-semibold text-gray-900">
+                                {item.name}
+                            </div>
+                            <div className="text-sm text-gray-700">
+                                Rp {item.price.toLocaleString()}
                             </div>
                         </div>
                     </div>
-                    <div className="">
+
+                    {/* KANAN: kontrol */}
+                    <div
+                        className="
+    flex
+    flex-row
+    md:flex-col
+    items-center
+    md:items-start
+    gap-2
+    md:gap-1">
+                        {/* tombol qty */}
                         <div className="flex items-center gap-1 bg-white rounded px-1 py-1">
                             <button
                                 onClick={() => handleMinus(index)}
-                                className="bg-orange-500 text-white w-6 h-6 rounded text-sm"
+                                className="bg-orange-500 text-white w-7 h-7 rounded"
                             >
                                 –
                             </button>
-                            <span className="w-6 text-center text-sm">{item.qty}</span>
+
+                            <span className="w-6 text-center font-medium text-gray-900">
+                                {item.qty}
+                            </span>
+
                             <button
                                 onClick={() => handlePlus(index)}
-                                className="bg-orange-500 text-white w-6 h-6 rounded text-sm"
+                                className="bg-orange-500 text-white w-7 h-7 rounded"
                             >
                                 +
                             </button>
                         </div>
 
-                        <div className="text-sm text-gray-500 mt-1">
+                        {/* total harga */}
+                        <div className="text-sm font-medium text-gray-700 md:mt-1">
                             <span className="ml-2 text-gray-400">
-                                Rp {(item.price * item.qty).toLocaleString()}
+                            Rp {(item.price * item.qty).toLocaleString()}
                             </span>
                         </div>
                     </div>
                 </div>
             ))}
 
-            <button className="mt-4 bg-orange-500 text-white w-full py-2 rounded" onClick={handleLanjut}>
+            <button
+                className="mt-6 bg-orange-500 text-white w-full py-3 rounded-lg font-semibold"
+                onClick={handleLanjut}
+            >
                 Lanjut
             </button>
         </div>

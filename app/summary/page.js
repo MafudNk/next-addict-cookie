@@ -103,26 +103,26 @@ Pesan: ${form.pesan}
 
   return (
     <div className="max-w-xl mx-auto p-4 space-y-6">
-      <h1 className="text-2xl font-bold">Ringkasan Pesanan</h1>
+      <h1 className="text-2xl font-bold text-gray-900">Ringkasan Pesanan</h1>
 
       <ul className="bg-white shadow rounded p-4 space-y-2">
         {order.map((item, index) => (
           <li key={item.id} className="flex justify-between items-center border-b pb-1">
             <div>
-              <p>{item.name}</p>
+              <p className='text-gray-900'>{item.name}</p>
               <div className="flex items-center gap-2 mt-1">
                 <button
                   onClick={() => handleMinus(index)}
-                  className="bg-gray-200 px-2 rounded"
+                  className="bg-gray-200 px-2 rounded text-gray-900"
                 >-</button>
-                <span>{item.qty}</span>
+                <span className='text-gray-900'>{item.qty}</span>
                 <button
                   onClick={() => handlePlus(index)}
-                  className="bg-gray-200 px-2 rounded"
+                  className="bg-gray-200 px-2 rounded text-gray-900"
                 >+</button>
               </div>
             </div>
-            <span className="text-sm">Rp {(item.price * item.qty).toLocaleString()}</span>
+            <span className="text-sm text-gray-900">Rp {(item.price * item.qty).toLocaleString()}</span>
           </li>
         ))}
 
@@ -138,10 +138,10 @@ Pesan: ${form.pesan}
 
       <form onSubmit={handleSubmit} className="space-y-4 bg-white shadow p-4 rounded">
         <div>
-          <label className="block text-sm font-medium">Nama</label>
+          <label className="block text-sm font-medium text-gray-900">Nama</label>
           <input
             type="text"
-            className="w-full border rounded px-3 py-2"
+            className="w-full border rounded px-3 py-2 text-gray-900"
             value={nama}
             onChange={(e) => setNama(e.target.value)}
             required
@@ -149,9 +149,9 @@ Pesan: ${form.pesan}
         </div>
 
         <div>
-          <label className="block text-sm font-medium">Alamat</label>
+          <label className="block text-sm font-medium text-gray-900">Alamat</label>
           <textarea
-            className="w-full border rounded px-3 py-2"
+            className="w-full border rounded px-3 py-2 text-gray-900"
             value={alamat}
             onChange={(e) => setAlamat(e.target.value)}
             required
@@ -159,9 +159,9 @@ Pesan: ${form.pesan}
         </div>
 
         <div>
-          <label className="block text-sm font-medium">Metode Pengiriman</label>
+          <label className="block text-sm font-medium text-gray-900">Metode Pengiriman</label>
           <select
-            className="w-full border rounded px-3 py-2"
+            className="w-full border rounded px-3 py-2 text-gray-900"
             value={pengiriman}
             onChange={(e) => setPengiriman(e.target.value)}
             required
@@ -174,9 +174,9 @@ Pesan: ${form.pesan}
         </div>
 
         <div>
-          <label className="block text-sm font-medium">Pesan Tambahan (opsional)</label>
+          <label className="block text-sm font-medium text-gray-900">Pesan Tambahan (opsional)</label>
           <textarea
-            className="w-full border rounded px-3 py-2"
+            className="w-full border rounded px-3 py-2 text-gray-900"
             value={pesan}
             onChange={(e) => setPesan(e.target.value)}
           />
