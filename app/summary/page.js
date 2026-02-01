@@ -17,7 +17,7 @@ export default function SummaryPage() {
   }, [])
 
   const total = order.reduce((acc, item) => acc + item.price * item.qty, 0)
-
+  const [loading, setLoading] = useState(false);
   const handleSubmit = async (e) => {
     e.preventDefault()
 
@@ -30,20 +30,35 @@ export default function SummaryPage() {
       total,
     }
     console.log("FINAL DATA:", finalData);  // ✔️ Aman terbaca
+    if (loading) return; // anti double click
 
-    const res = await fetch("/api/order", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(finalData)
-    });
+    setLoading(true);
 
-    const data = await res.json();
-    localStorage.removeItem('orderData')
-    console.log("RESPONSE:", data);
-    if (data.success) {
-      router.push("/success");
+    try {
+
+      const res = await fetch("/api/order", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(finalData)
+      });
+
+      const data = await res.json();
+      localStorage.removeItem('orderData')
+      console.log("RESPONSE:", data);
+      if (data.success) {
+        router.push("/success");
+      }
+
+      if (!res.ok) {
+        throw new Error("Gagal mengirim pesanan");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Terjadi kesalahan, coba lagi.");
+    } finally {
+      setLoading(false);
     }
     // e.preventDefault()
     // Sementara: tampilkan di console
@@ -182,10 +197,18 @@ Pesan: ${form.pesan}
           />
         </div>
         <button
-          type="submit"
-          className="bg-orange-500 text-white px-4 py-2 rounded w-full"
+          onClick={handleSubmit}
+          disabled={loading}
+          className={`
+    w-full py-3 rounded-lg font-semibold
+    text-white
+    transition
+    ${loading
+              ? "bg-orange-300 cursor-not-allowed"
+              : "bg-orange-500 hover:bg-orange-600"}
+  `}
         >
-          Kirim Pesanan
+          {loading ? "Mengirim Pesanan..." : "Pesan"}
         </button>
       </form>
     </div>
