@@ -41,61 +41,55 @@ export default function SummaryPage() {
       const res = await fetch("/api/order", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(finalData)
+        body: JSON.stringify(finalData),
       });
 
-      const data = await res.json();
-      localStorage.removeItem('orderData')
-      console.log("RESPONSE:", data);
-      if (data.success) {
-        router.push("/success");
-      }
-
+      // 1️⃣ cek HTTP status DULU
       if (!res.ok) {
         throw new Error("Gagal mengirim pesanan");
       }
-    } catch (err) {
-      console.error(err);
-      alert("Terjadi kesalahan, coba lagi.");
+
+      // 2️⃣ baru parse response
+      const data = await res.json();
+      console.log("RESPONSE:", data);
+
+      if (!data.success) {
+        throw new Error("Server gagal memproses order");
+      }
+
+      // 3️⃣ BARU cleanup & redirect
+      localStorage.removeItem("orderData");
+
+      // (opsional) WhatsApp admin di sini
+      // window.open(...)
+      const waText = `
+📦 ORDER BARU
+🆔 Order ID: ${data.orderId}
+
+👤 Nama: ${nama}
+📍 Alamat: ${alamat}
+💳 Pembayaran: ${pembayaran}
+🚚 Pengiriman: ${pengiriman}
+
+🛒 Total: Rp ${total.toLocaleString()}
+`;
+
+      window.open(
+        `https://wa.me/6282232993365?text=${encodeURIComponent(waText)}`,
+        "_blank"
+      );
+
+      router.push("/success");
+    } catch (error) {
+      console.error("❌ Error saat mengirim pesanan:", error);
+      alert("Gagal mengirim pesanan: " + error.message);
     } finally {
       setLoading(false);
     }
-    // e.preventDefault()
-    // Sementara: tampilkan di console
-    // console.log('Data dikirim:', finalData)
-
-    // Simulasi kirim atau navigasi selesai
-    // alert('Pesanan berhasil dikirim!')
-
-    // // Bersihkan localStorage kalau perlu
-    // localStorage.removeItem('orderData')
   }
-  const handleSendToWhatsApp = () => {
-    const phoneNumber = '6281234567890' // Ganti dengan nomor admin kamu (pakai kode negara)
 
-    const orderText = order
-      .filter(item => item.qty > 0)
-      .map(item => `- ${item.name} x${item.qty} = Rp ${(item.price * item.qty).toLocaleString()}`)
-      .join('\n')
-
-    const total = order.reduce((acc, item) => acc + item.price * item.qty, 0)
-
-    const message = `
-📦 Pesanan Baru:
-${orderText}
-
-Total: Rp ${total.toLocaleString()}
-
-Nama: ${form.nama}
-Alamat: ${form.alamat}
-Pesan: ${form.pesan}
-  `.trim()
-
-    const encoded = encodeURIComponent(message)
-    window.location.href = `https://wa.me/${phoneNumber}?text=${encoded}`
-  }
 
   const handlePlus = (index) => {
     const newOrder = [...order]
