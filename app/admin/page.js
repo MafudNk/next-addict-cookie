@@ -54,8 +54,11 @@ export default function AdminPage() {
                         <th className="border p-2">OrderID</th>
                         <th className="border p-2">Nama</th>
                         <th className="border p-2">Item</th>
+                        <th className="border p-2">Harga</th>
                         <th className="border p-2">Qty</th>
                         <th className="border p-2">Total</th>
+                        <th className="border p-2">Pembayaran</th>
+                        <th className="border p-2">Pengiriman</th>
                         <th className="border p-2">Status</th>
                     </tr>
                 </thead>
@@ -65,9 +68,12 @@ export default function AdminPage() {
                         <tr key={index}>
                             <td className="border p-2">{row[0]}</td>
                             <td className="border p-2">{row[2]}</td>
-                            <td className="border p-2">{row[5]}</td>
                             <td className="border p-2">{row[7]}</td>
-                            <td className="border p-2">Rp {row[8]}</td>
+                            <td className="border p-2">{row[8]}</td>
+                            <td className="border p-2">{row[9]}</td>
+                            <td className="border p-2">Rp. {row[10]}</td>
+                            <td className="border p-2">{row[6]}</td>
+                            <td className="border p-2">{row[5]}</td>
                             <td className="border p-2">
                                 <select
                                     value={row[1]}
