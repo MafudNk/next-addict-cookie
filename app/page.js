@@ -88,38 +88,38 @@ export default function HomePage() {
         <div className="swiper-wrapper">
           <SwiperSlide className="swiper-slide flex flex-col items-center">
             <a href="product-detail/classic.html"><Image src="/images/product/1.webp" alt="Classic" width={300} height={300} className="max-w-full h-auto" />
-              <p className="text-center mt-2">Classic</p>
+              <p className="text-center mt-2 text-gray-900">Classic</p>
             </a>
           </SwiperSlide>
           <SwiperSlide className="swiper-slide flex flex-col items-center">
             <a href="product-detail/original.html"><Image src="/images/product/2.webp" alt="Classic" width={300} height={300} className="max-w-full h-auto" />
-              <p className="text-center mt-2">OG with Marshmallow</p>
+              <p className="text-center mt-2 text-gray-900">OG with Marshmallow</p>
             </a>
           </SwiperSlide>
           <SwiperSlide className="swiper-slide flex flex-col items-center">
             <a href="product-detail/original.html"><Image src="/images/product/7.webp" alt="Classic" width={300} height={300} className="max-w-full h-auto" />
-              <p className="text-center mt-2">Biscoff</p>
+              <p className="text-center mt-2 text-gray-900">Biscoff</p>
             </a>
           </SwiperSlide>
           <SwiperSlide className="swiper-slide flex flex-col items-center">
             <a href="product-detail/double-choco.html"><Image src="/images/product/3.webp" width={300} height={300}
               className=" transform [rotate:45deg]" alt="Double Choco" />
-              <p className="text-center mt-2">Double Choco</p>
+              <p className="text-center mt-2 text-gray-900">Double Choco</p>
             </a>
           </SwiperSlide>
           <SwiperSlide className="swiper-slide flex flex-col items-center">
             <a href="product-detail/black-caramel.html"><Image src="/images/product/4.webp" alt="Black Caramel" width={300} height={300} className="max-w-full h-auto" />
-              <p className="text-center mt-2">Black Caramel</p>
+              <p className="text-center mt-2 text-gray-900">Black Caramel</p>
             </a>
           </SwiperSlide>
           <SwiperSlide className="swiper-slide flex flex-col items-center">
             <a href="product-detail/matcha.html"><Image src="/images/product/5.webp" alt="Matcha" width={300} height={300} className="max-w-full h-auto" />
-              <p className="text-center mt-2">Matcha</p>
+              <p className="text-center mt-2 text-gray-900">Matcha</p>
             </a>
           </SwiperSlide>
           <SwiperSlide className="swiper-slide flex flex-col items-center">
             <a href="product-detail/red-velvet.html"><Image src="/images/product/6.webp" alt="Red Velvet" width={300} height={300} className="max-w-full h-auto" />
-              <p className="text-center mt-2">Red Velvet</p>
+              <p className="text-center mt-2 text-gray-900">Red Velvet</p>
             </a>
           </SwiperSlide>
         </div>

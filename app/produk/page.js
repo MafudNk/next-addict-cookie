@@ -24,7 +24,7 @@ export default function ProductPage() {
                                 height={180}
                                 className="object-cover rounded-full mx-auto"
                             />
-                            <h3 className="text-lg font-semibold text-center">{product.name}</h3>
+                            <h3 className="text-lg font-semibold text-center text-gray-900">{product.name}</h3>
                         </div>
                     </Link>
                 ))}
