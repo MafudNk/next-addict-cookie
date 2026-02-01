@@ -64,21 +64,27 @@ export default function AdminPage() {
                 </thead>
 
                 <tbody>
-                    {orders.map((row, index) => (
-                        <tr key={index}>
-                            <td className="border p-2">{row[0]}</td>
-                            <td className="border p-2">{row[2]}</td>
-                            <td className="border p-2">{row[7]}</td>
-                            <td className="border p-2">{row[8]}</td>
-                            <td className="border p-2">{row[9]}</td>
-                            <td className="border p-2">Rp. {row[10]}</td>
-                            <td className="border p-2">{row[6]}</td>
-                            <td className="border p-2">{row[5]}</td>
+                    {orders.map((order) => (
+                        <tr key={order.orderId}>
+                            <td className="border p-2">{order.orderId}</td>
+                            <td className="border p-2">{order.nama}</td>
+                            <td className="border p-2">
+                                <ul className="list-disc pl-4">
+                                    {order.items.map((item, i) => (
+                                        <li key={i}>
+                                            {item.name} ({item.qty} x Rp {item.price})
+                                        </li>
+                                    ))}
+                                </ul>
+                            </td>
+                            <td className="border p-2">Rp {order.total}</td>
+                            <td className="border p-2">{order.pembayaran}</td>
+                            <td className="border p-2">{order.pengiriman}</td>
                             <td className="border p-2">
                                 <select
-                                    value={row[1]}
+                                    value={order.status}
                                     onChange={(e) =>
-                                        updateStatus(index + 2, e.target.value)
+                                        updateStatus(order.orderId, e.target.value)
                                     }
                                     className="border rounded px-2 py-1"
                                 >
