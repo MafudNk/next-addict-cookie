@@ -6,6 +6,7 @@ export default function SummaryPage() {
   const [nama, setNama] = useState('')
   const [alamat, setAlamat] = useState('')
   const [pengiriman, setPengiriman] = useState('')
+  const [pembayaran, setPembayaran] = useState('')
   const [pesan, setPesan] = useState('')
   const router = useRouter()
 
@@ -26,6 +27,7 @@ export default function SummaryPage() {
       nama,
       alamat,
       pengiriman,
+      pembayaran,
       pesan,
       total,
     }
@@ -147,7 +149,7 @@ Pesan: ${form.pesan}
           onClick={() => router.push('/order')}
           className="flex-1 py-2 bg-gray-300 text-gray-800 rounded"
         >
-          ← Modifikasi Pesanan
+          ← Tambah Pesanan
         </button>
       </ul>
 
@@ -174,17 +176,31 @@ Pesan: ${form.pesan}
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-900">Metode Pengiriman</label>
+          <label className="block text-sm font-medium text-gray-900"> Pembayaran</label>
+          <select
+            className="w-full border rounded px-3 py-2 text-gray-900"
+            value={pembayaran}
+            onChange={(e) => setPembayaran(e.target.value)}
+            required
+          >
+            <option value="">Pilih</option>
+            <option value="Qris">Qris</option>
+            <option value="Cash">Cash</option>
+          </select>
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-900"> Pengiriman</label>
           <select
             className="w-full border rounded px-3 py-2 text-gray-900"
             value={pengiriman}
             onChange={(e) => setPengiriman(e.target.value)}
             required
           >
-            <option value="">Pilih metode</option>
+            <option value="">Pilih</option>
             <option value="pickup">Ambil di tempat</option>
             <option value="gosend">GoSend</option>
-            <option value="kurir">Kurir toko</option>
+            <option value="paxel">Paxel</option>
           </select>
         </div>
 

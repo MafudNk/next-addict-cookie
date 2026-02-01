@@ -5,7 +5,7 @@ import { JWT } from "google-auth-library";
 export async function POST(req) {
   try {
     const body = await req.json();
-    const { order, nama, alamat, pengiriman, pesan, total } = body;
+    const { order, nama, alamat, pengiriman, pembayaran, pesan, total } = body;
       // email: credentials.client_email,
       // key: credentials.private_key,
     const client = new JWT({
@@ -26,6 +26,7 @@ export async function POST(req) {
       nama,
       alamat,
       pengiriman,
+      pembayaran,
       item.name,
       item.price,
       item.qty,
