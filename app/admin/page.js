@@ -52,14 +52,14 @@ export default function AdminPage() {
         fetchOrders();
     };
 
-    if (loading) return <p className="p-4">Loading...</p>;
+    if (loading) return <p className="p-4 text-gray-800">Loading...</p>;
 
     return (
         <div className="p-6">
-            <h1 className="text-2xl font-bold mb-4">Admin Orders</h1>
+            <h1 className="text-2xl font-bold mb-4 text-gray-800">Admin Orders</h1>
 
             {/* 🔹 SUMMARY BAR */}
-            <div className="flex gap-4 mb-4 text-sm">
+            <div className="flex gap-4 mb-4 text-sm text-gray-800">
                 <div>
                     📦 Total Order: <b>{orders.length}</b>
                 </div>
@@ -72,7 +72,7 @@ export default function AdminPage() {
                     <b>{orders.filter(o => o.status === "paid").length}</b>
                 </div>
             </div>
-            <div className="flex gap-2 mb-4">
+            <div className="flex gap-2 mb-4 text-gray-800">
                 {["all", "pending", "paid", "dikirim", "done"].map(s => (
                     <button
                         key={s}
@@ -84,13 +84,13 @@ export default function AdminPage() {
                     </button>
                 ))}
             </div>
-            <table className="w-full border text-sm">
+            <table className="w-full border text-sm text-gray-800">
                 <thead className="bg-gray-100">
                     <tr>
                         <th className="border p-2">OrderID</th>
                         <th className="border p-2">Nama</th>
                         <th className="border p-2">Item</th>
-                        <th className="border p-2">Total</th>
+                           <th className="border p-2">Total</th>
                         <th className="border p-2">Pembayaran</th>
                         <th className="border p-2">Pengiriman</th>
                         <th className="border p-2">Status</th>
