@@ -207,12 +207,11 @@ export default function SummaryPage() {
           />
         </div>
         <button
-          onClick={handleSubmit}
+          type="submit"
           disabled={loading}
           className={`
     w-full py-3 rounded-lg font-semibold
-    text-white
-    transition
+    text-white transition
     ${loading
               ? "bg-orange-300 cursor-not-allowed"
               : "bg-orange-500 hover:bg-orange-600"}
