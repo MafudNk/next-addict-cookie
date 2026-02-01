@@ -10,6 +10,7 @@
 !.yarn/releases
 !.yarn/versions
 /lib/*
+lib/credentials.json
 
 # testing
 /coverage
