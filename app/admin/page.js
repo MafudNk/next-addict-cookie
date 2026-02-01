@@ -42,14 +42,14 @@ export default function AdminPage() {
     }
 
 
-    const updateStatus = async (rowIndex, status) => {
+    const updateStatus = async (orderId, status) => {
         await fetch("/api/admin/update-status", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ rowIndex, status }),
+            body: JSON.stringify({ orderId, status }),
         });
 
-        fetchOrders(); // refresh data
+        fetchOrders();
     };
 
     if (loading) return <p className="p-4">Loading...</p>;
