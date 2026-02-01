@@ -11,41 +11,34 @@ import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 export default function HomePage() {
   return (
     <>
-      <div className="bg-cover bg-center">
-        <Swiper className="swiperNav swiperNav2 mySwiperNav  w-full overflow-hidden"
+      <div className="w-full h-[50vh] md:h-[80vh] relative overflow-hidden bg-[#fff8ee]">
+        <Swiper
+          className="w-full h-full"
           modules={[Autoplay]}
           autoplay={{ delay: 3000 }}
-          spaceBetween={30}
-          slidesPerView={1}>
-
-          <SwiperSlide className="swiper-slide flex flex-col items-center w-auto">
-            <Image src="/images/nav/JN1A3942.webp" alt="" width={1200} height={800} className="max-w-full h-auto" />
-          </SwiperSlide>
-          <SwiperSlide className="swiper-slide flex flex-col items-center w-auto">
-            <Image src="/images/nav/JN1A3943.webp" alt="" width={1200} height={800} className="max-w-full h-auto" />
-          </SwiperSlide>
-          <SwiperSlide className="swiper-slide flex flex-col items-center w-auto">
-            <Image src="/images/nav/JN1A3935_new.webp" alt="" width={1200} height={800} className="max-w-full h-auto" />
-          </SwiperSlide>
-          <SwiperSlide className="swiper-slide flex flex-col items-center w-auto">
-            <Image src="/images/nav/JN1A3958.webp" alt="" width={1200} height={800} className="max-w-full h-auto" />
-          </SwiperSlide>
-          <SwiperSlide className="swiper-slide flex flex-col items-center w-auto">
-            <Image src="/images/nav/JN1A3994.webp" alt="" width={1200} height={800} className="max-w-full h-auto" />
-          </SwiperSlide>
-
-          <SwiperSlide className="swiper-slide flex flex-col items-center w-auto">
-            <Image src="/images/nav/JN1A4141.webp" alt="" width={1200} height={800} className="max-w-full h-auto" />
-          </SwiperSlide>
-          <SwiperSlide className="swiper-slide flex flex-col items-center w-auto">
-            <Image src="/images/nav/JN1A4143.webp" alt="" width={1200} height={800} className="max-w-full h-auto" />
-          </SwiperSlide>
-          <SwiperSlide className="swiper-slide flex flex-col items-center w-auto">
-            <Image src="/images/nav/JN1A4148.webp" alt="" width={1200} height={800} className="max-w-full h-auto" />
-          </SwiperSlide>
+          slidesPerView={1}
+        >
+          {[
+            "JN1A3942.webp",
+            "JN1A3943.webp",
+            "JN1A3935_new.webp",
+            "JN1A3958.webp",
+          ].map((img, i) => (
+            <SwiperSlide key={i} className="w-full h-full relative">
+              <Image
+                src={`/images/nav/${img}`}
+                alt=""
+                fill
+                priority={i === 0}
+                className="
+            object-contain
+            md:object-cover
+            transition-all duration-500
+          "
+              />
+            </SwiperSlide>
+          ))}
         </Swiper>
-
-
       </div>
       <section className="relative overflow-hidden bg-orange-50 py-20">
         <div
