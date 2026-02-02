@@ -5,7 +5,9 @@ import { signatureCookies } from "../data";
 
 export default function SignatureCookieDetail({ params }) {
   const item = signatureCookies.items.find(
-    (c) => c.slug === params.slug);
+    (c) => c.slug === params.slug
+  );
+
   if (!item) return notFound();
 
   return (
@@ -18,7 +20,6 @@ export default function SignatureCookieDetail({ params }) {
           width={500}
           height={500}
           className="rounded-3xl"
-          priority
         />
 
         <div className="space-y-6">
@@ -36,7 +37,7 @@ export default function SignatureCookieDetail({ params }) {
           <div className="flex gap-3">
             <Link
               href={`/order?product=${item.slug}`}
-              className="bg-orange-500 text-white px-6 py-3 rounded-full font-medium hover:bg-orange-600"
+              className="bg-orange-500 text-white px-6 py-3 rounded-full"
             >
               Pesan Sekarang
             </Link>

@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation'
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 const cookies = [
     { id: 1, name: "Classic", price: 23000, img: "images/product/1.webp", qty: 0 },
     { id: 2, name: "OG with Marshmallow", price: 21500, img: "images/product/2.webp", qty: 0 },
@@ -11,6 +12,31 @@ const cookies = [
     { id: 5, name: "Black Caramel", price: 25000, img: "images/product/4.webp", qty: 0 },
     { id: 6, name: "Matcha", price: 23500, img: "images/product/5.webp", qty: 0 },
     { id: 7, name: "Red Velvet", price: 18500, img: "images/product/6.webp", qty: 0 },
+];
+
+const ramadhanSpecial = [
+    {
+        id: "signature-cookies",
+        name: "Ramadhan Signature Cookies",
+        price: null, // karena banyak varian
+        note: "Hanya 50 toples / varian",
+        type: "collection",
+        image: "/images/signature/signature-cookies-cover.webp",
+    },
+    {
+        id: "nastar-gold-butter",
+        name: "Nastar Gold Butter",
+        price: 86000,
+        type: "single",
+        image: "/images/signature/nastar.webp",
+    },
+    {
+        id: "luxe-chocolate-bite",
+        name: "Luxe Chocolate Bite",
+        price: 120000,
+        type: "single",
+        image: "/images/signature/luxe.webp",
+    },
 ];
 
 export default function OrderPage() {
@@ -72,6 +98,25 @@ export default function OrderPage() {
                 🛒 Pesan Cookies
             </h2>
 
+            {/* 🌙 RAMADHAN SPECIAL */}
+            <div className="mb-6 bg-white rounded-xl p-4 border border-orange-200">
+                <h3 className="font-bold text-lg mb-3">
+                    🌙 Ramadhan Special (Limited)
+                </h3>
+
+                <div className="space-y-3 text-sm text-gray-700">
+                    <p>🎁 Signature Cookies (Aneka kue kering)</p>
+                    <p>🍍 Nastar Gold Butter</p>
+                    <p>🍫 Luxe Chocolate Bite</p>
+                </div>
+
+                <Link
+                    href="/ramadhan"
+                    className="inline-block mt-3 text-orange-600 font-medium underline"
+                >
+                    Lihat Detail Ramadhan →
+                </Link>
+            </div>
             {items.map((item, index) => (
                 <div
                     key={item.id}
@@ -139,7 +184,7 @@ export default function OrderPage() {
                         {/* total harga */}
                         <div className="text-sm font-medium text-gray-700 md:mt-1">
                             <span className="ml-2 text-gray-400">
-                            Rp {(item.price * item.qty).toLocaleString()}
+                                Rp {(item.price * item.qty).toLocaleString()}
                             </span>
                         </div>
                     </div>
