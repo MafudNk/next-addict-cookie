@@ -6,6 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css'; // Import style Swiper
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import RamadhanTeaser from './components/RamadhanTeaser';
 
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 export default function HomePage() {
@@ -76,6 +77,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+      <RamadhanTeaser />
       <Swiper className="bg-orange-50 swiper mySwiper pb-10"
         modules={[Autoplay, Navigation, Pagination]}
         pagination={{ clickable: true, }}

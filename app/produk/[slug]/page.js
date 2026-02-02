@@ -70,8 +70,8 @@ const PRODUCTS = [
     slug: "black-caramel",
     name: "Black Caramel Cookies",
     images: [
-      "/images/preview-product/JN1A4050.JPG",
-      "/images/preview-product/JN1A3964.webp",
+      "/images/preview-product/JN1A4073.JPG",
+      "/images/preview-product/JN1A3976.webp",
     ],
     description:
       "Varian Black Caramel adalah pilihan bagi pecinta kue yang menginginkan rasa cokelat pekat serta  perpaduan karamel dalam setiap gigitan. Cookies ini memiliki tekstur yang lembut dan moist, dengan rasa manis yang seimbang dan aroma karamel yang menggoda.",
@@ -189,7 +189,7 @@ export default function ProductDetailPage() {
 
         {/* Detail */}
         <div className="md:w-2/3">
-          <h1 className="text-2xl font-bold mb-2">{product.name}</h1>
+          <h1 className="text-2xl font-bold mb-2 text-gray-800">{product.name}</h1>
 
           <p className="text-gray-700 mb-4">{product.description}</p>
 
