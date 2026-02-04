@@ -77,7 +77,7 @@ export default function SummaryPage() {
 `;
 
       window.open(
-        `https://wa.me/6282232993365?text=${encodeURIComponent(waText)}`,
+        `https://wa.me/6281617997119?text=${encodeURIComponent(waText)}`,
         "_blank"
       );
 
