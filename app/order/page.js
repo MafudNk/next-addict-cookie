@@ -4,61 +4,31 @@ import { useRouter } from 'next/navigation'
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-const cookies = [
-    { id: 1, name: "Classic", price: 23000, img: "images/product/1.webp", qty: 0 },
-    { id: 2, name: "OG with Marshmallow", price: 21500, img: "images/product/2.webp", qty: 0 },
-    { id: 3, name: "Biscoff", price: 20500, img: "images/product/7.webp", qty: 0 },
-    { id: 4, name: "Double Choco", price: 22500, img: "images/product/3.webp", qty: 0 },
-    { id: 5, name: "Black Caramel", price: 25000, img: "images/product/4.webp", qty: 0 },
-    { id: 6, name: "Matcha", price: 23500, img: "images/product/5.webp", qty: 0 },
-    { id: 7, name: "Red Velvet", price: 18500, img: "images/product/6.webp", qty: 0 },
-];
+import { ALL_PRODUCTS } from '../data/products.js'
 
-const ramadhanSpecial = [
-    {
-        id: "signature-cookies",
-        name: "Ramadhan Signature Cookies",
-        price: null, // karena banyak varian
-        note: "Hanya 50 toples / varian",
-        type: "collection",
-        image: "/images/signature/signature-cookies-cover.webp",
-    },
-    {
-        id: "nastar-gold-butter",
-        name: "Nastar Gold Butter",
-        price: 86000,
-        type: "single",
-        image: "/images/signature/nastar.webp",
-    },
-    {
-        id: "luxe-chocolate-bite",
-        name: "Luxe Chocolate Bite",
-        price: 120000,
-        type: "single",
-        image: "/images/signature/luxe.webp",
-    },
-];
+
 
 export default function OrderPage() {
     const router = useRouter()
     // Ambil data dari localStorage jika ada
     const [items, setItems] = useState([]);
     useEffect(() => {
-        const savedOrder = localStorage.getItem('orderData')
-        if (savedOrder) {
+        const saved = JSON.parse(
+            localStorage.getItem("orderData") || "[]"
+        );
 
-            const savedItems = JSON.parse(savedOrder)
+        const merged = ALL_PRODUCTS.map((product) => {
+            const found = saved.find(
+                (s) => s.id === product.id
+            );
 
-            // Gabungkan data: isi qty dari savedItems jika ada
-            const mergedItems = cookies.map(defaultItem => {
-                const found = savedItems.find(s => s.id === defaultItem.id)
-                return found ? { ...defaultItem, qty: found.qty } : defaultItem
-            })
-            setItems(mergedItems)
-        } else {
-            setItems(cookies.map(item => ({ ...item, qty: 0 })));
-        }
-    }, [])
+            return found
+                ? { ...product, qty: found.qty }
+                : { ...product, qty: 0 };
+        });
+
+        setItems(merged);
+    }, []);
 
     const handleLanjut = () => {
 
@@ -130,6 +100,7 @@ export default function OrderPage() {
           border-b border-orange-100
         "
                 >
+
                     {/* KIRI: gambar + info */}
                     <div className="flex items-center gap-3">
                         <Image
@@ -141,6 +112,13 @@ export default function OrderPage() {
                         />
 
                         <div>
+
+
+                            {item.category === "signature" && (
+                                <span className="text-xs text-red-600 font-medium">
+                                    🌙 Ramadhan Special
+                                </span>
+                            )}
                             <div className="font-semibold text-gray-900">
                                 {item.name}
                             </div>

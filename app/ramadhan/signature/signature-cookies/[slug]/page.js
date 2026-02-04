@@ -1,12 +1,44 @@
+'use client';
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { signatureCookies } from "../data";
+import { useRouter } from "next/navigation";
+import { use } from "react";
 
 export default function SignatureCookieDetail({ params }) {
+
+  const router = useRouter();
+  const { slug } = use(params); // ✅ UNWRAP PROMISE
+
   const item = signatureCookies.items.find(
-    (c) => c.slug === params.slug
+    (c) => c.slug === slug
   );
+
+  if (!item) return null;
+
+  const handleOrder = (product) => {
+    const saved = JSON.parse(
+      localStorage.getItem("orderData") || "[]"
+    );
+
+    const exist = saved.find(
+      (i) => i.id === item.id
+    );
+
+    const updated = exist
+      ? saved.map((i) =>
+        i.id === 'sig-' + item.id
+          ? { ...i, qty: i.qty + 1 }
+          : i
+      )
+      : [...saved, { ...item, qty: 1 }];
+
+    localStorage.setItem(
+      "orderData",
+      JSON.stringify(updated)
+    );
+  };
 
   if (!item) return notFound();
 
@@ -35,12 +67,15 @@ export default function SignatureCookieDetail({ params }) {
           </p>
 
           <div className="flex gap-3">
-            <Link
-              href={`/order?product=${item.slug}`}
-              className="bg-orange-500 text-white px-6 py-3 rounded-full"
+            <button
+              onClick={() => {
+                handleOrder(item);
+                router.push("/order");
+              }}
+              className="bg-orange-500 text-white px-6 py-3 rounded-full font-semibold"
             >
               Pesan Sekarang
-            </Link>
+            </button>
 
             <Link
               href="/ramadhan/signature/signature-cookies"
