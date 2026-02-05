@@ -1,6 +1,6 @@
 import { Geist } from "next/font/google";
 import "./globals.css";
-
+import { Analytics } from "@vercel/analytics/react";
 import Navbar from "./components/Navbar";
 import AnnouncementBar from "./components/AnnouncementBar";
 
@@ -31,6 +31,7 @@ export default function RootLayout({ children }) {
             <p>© 2025 Addict Bite Cookie. All rights reserved.</p>
           </div>
         </footer>
+        <Analytics />
       </body>
     </html>
   );
