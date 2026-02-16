@@ -8,9 +8,8 @@ export default function AnnouncementBar() {
 
         <p className="leading-tight">
           <span className="font-semibold">
-            Ramadhan & Lebaran Special
           </span>{" "}
-          — Hampers & kue edisi terbatas · Pre-Order sekarang
+          Terima kasih, Ramadhan Collection Sold Out 🤍
         </p>
 {/* “Terima kasih, Ramadhan Collection Sold Out 🤍” */}
         <Link
