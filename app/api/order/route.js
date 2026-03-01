@@ -50,6 +50,7 @@ export async function POST(req) {
     // 🧾 Data ke Sheet
     const values = order.map(item => [
       orderId,
+      status,
       nama,
       alamat,
       pengiriman,

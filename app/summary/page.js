@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation'
 export default function SummaryPage() {
   const [order, setOrder] = useState([])
   const [nama, setNama] = useState('')
+  const [status, setStatus] = useState('pending')
   const [alamat, setAlamat] = useState('')
   const [pengiriman, setPengiriman] = useState('')
   const [pembayaran, setPembayaran] = useState('')
@@ -24,6 +25,7 @@ export default function SummaryPage() {
 
     const finalData = {
       order,
+      status,
       nama,
       alamat,
       pengiriman,
