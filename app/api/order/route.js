@@ -43,7 +43,7 @@ export async function POST(req) {
 
     // 📦 Body
     const body = await req.json();
-    const { order, nama, alamat, pengiriman, pembayaran, pesan, total } = body;
+    const { order, status, nama, alamat, pengiriman, pembayaran, pesan, total } = body;
 
     const waktu = new Date().toLocaleString("id-ID");
 
