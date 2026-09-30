@@ -51,7 +51,7 @@ type Campaign = {
 FE mengambil katalog di server component dengan
 `fetch(url, { next: { tags: ["products"] } })`. Saat admin mengubah produk, BE
 memanggil `POST {FE_URL}/api/revalidate` (secret header) → `revalidateTag("products")`.
-Endpoint revalidate itu **belum ada di FE**; dibuat saat integrasi.
+Endpoint itu sudah ada di FE: `app/api/revalidate/route.js` (secret di header `x-revalidate-secret`, tag `products` / `campaigns`).
 
 ## 2. Buat order
 
@@ -108,8 +108,11 @@ FE tidak memanggil satupun dari ini.
 - RLS: `anon` hanya `SELECT` products/campaigns aktif; `orders`/`order_items` tanpa akses anon,
   semua tulis lewat service role di BE.
 
-## 5. Cara FE pindah ke BE
+## 5. Status integrasi
 
-1. Isi `NEXT_PUBLIC_API_URL` → `lib/api/orders.js` otomatis memanggil BE.
-2. Ganti isi `lib/api/products.js` dari import `catalog.js` menjadi `fetch` ke endpoint di atas.
-3. Hapus `lib/catalog.js`, `app/api/order/route.js`, dan dependensi `googleapis`.
+FE sudah tersambung ke BE (`feat/connect-backend`):
+
+- `lib/api/products.js` mengambil katalog dari BE (`NEXT_PUBLIC_API_URL`), cache 60 detik + tag.
+- `lib/api/orders.js` memanggil `POST {API_URL}/api/order` langsung dari browser (CORS diatur BE lewat `FRONTEND_ORIGINS`).
+- `lib/catalog.js`, `app/api/order/route.js` (Google Sheet) dan dependensi `googleapis` sudah dihapus.
+- Keranjang memakai key `cart:v2` karena id produk sekarang UUID.

@@ -1,6 +1,6 @@
 'use client';
 
-import Image from "next/image";
+import ProductImage from "./ProductImage";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
@@ -17,9 +17,9 @@ export default function ProductGallery({ images, alt }) {
       pagination={{ clickable: true }}
       autoplay={{ delay: 2500 }}
     >
-      {images.map((img, i) => (
-        <SwiperSlide key={img}>
-          <Image src={img} alt={alt} width={600} height={600} priority={i === 0} sizes="(min-width:768px) 33vw, 100vw" className="rounded shadow-md" />
+      {(images.length ? images : [""]).map((img, i) => (
+        <SwiperSlide key={img || "placeholder"}>
+          <ProductImage src={img} alt={alt} width={600} height={600} priority={i === 0} sizes="(min-width:768px) 33vw, 100vw" className="rounded shadow-md" />
         </SwiperSlide>
       ))}
     </Swiper>

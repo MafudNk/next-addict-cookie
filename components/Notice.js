@@ -6,6 +6,7 @@ const fmtShort = new Intl.DateTimeFormat("id-ID", { day: "numeric", timeZone: "U
 
 export default async function Notice() {
   const campaign = await getCampaign();
+  if (!campaign) return null;
   const start = new Date(campaign.preorderStart);
   const end = new Date(campaign.preorderEnd);
 

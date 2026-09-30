@@ -5,8 +5,12 @@ import { getProducts, getProductBySlug } from "@/lib/api/products";
 import { formatRupiah } from "@/lib/format";
 
 export async function generateStaticParams() {
-  const products = await getProducts({ category: "soft" });
-  return products.map((p) => ({ slug: p.slug }));
+  try {
+    const products = await getProducts({ category: "soft" });
+    return products.map((p) => ({ slug: p.slug }));
+  } catch {
+    return []; // BE tidak terjangkau saat build; halaman dirender saat diminta
+  }
 }
 
 export async function generateMetadata({ params }) {

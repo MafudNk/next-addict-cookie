@@ -1,6 +1,6 @@
 'use client';
 
-import Image from "next/image";
+import ProductImage from "@/components/ProductImage";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
@@ -24,7 +24,7 @@ export default function ProductCarousel({ products }) {
       {products.map((p) => (
         <SwiperSlide key={p.id} className="flex flex-col items-center">
           <Link href={`/produk/${p.slug}`}>
-            <Image src={p.thumbnail} alt={p.name} width={300} height={300} sizes="(min-width:1024px) 25vw, 60vw" className="max-w-full h-auto" />
+            <ProductImage src={p.thumbnail} alt={p.name} width={300} height={300} sizes="(min-width:1024px) 25vw, 60vw" className="max-w-full h-auto" />
             <p className="text-center mt-2 text-gray-900">{p.name}</p>
           </Link>
         </SwiperSlide>

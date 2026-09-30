@@ -8,8 +8,12 @@ import { formatRupiah } from "@/lib/format";
 // Hanya produk premium (Nastar Gold Butter, Luxe Chocolate Bite).
 // "signature-cookies" punya folder sendiri dan diprioritaskan Next.js.
 export async function generateStaticParams() {
-  const items = await getProducts({ category: "signature", collection: "premium" });
-  return items.map((p) => ({ slug: p.slug }));
+  try {
+    const items = await getProducts({ category: "signature", collection: "premium" });
+    return items.map((p) => ({ slug: p.slug }));
+  } catch {
+    return []; // BE tidak terjangkau saat build; halaman dirender saat diminta
+  }
 }
 
 export async function generateMetadata({ params }) {

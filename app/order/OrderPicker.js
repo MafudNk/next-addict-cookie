@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from "next/navigation";
-import Image from "next/image";
+import ProductImage from "@/components/ProductImage";
 import { useCart } from "@/components/CartProvider";
 import { formatRupiah } from "@/lib/format";
 
@@ -28,7 +28,7 @@ export default function OrderPicker({ products }) {
             className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 py-3 border-b border-orange-100"
           >
             <div className="flex items-center gap-3">
-              <Image src={p.thumbnail} alt={p.name} width={64} height={64} className="w-16 h-16 object-cover rounded" />
+              <ProductImage src={p.thumbnail} alt={p.name} width={64} height={64} className="w-16 h-16 object-cover rounded" />
               <div>
                 <div className="font-semibold text-gray-900">{p.name}</div>
                 <div className="text-sm text-gray-700">{formatRupiah(p.price)}</div>

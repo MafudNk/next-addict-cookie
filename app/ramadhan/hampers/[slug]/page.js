@@ -5,8 +5,12 @@ import AddToCartButton from "@/components/AddToCartButton";
 import { getCampaign, getProducts, getProductBySlug } from "@/lib/api/products";
 
 export async function generateStaticParams() {
-  const items = await getProducts({ category: "hampers" });
-  return items.map((p) => ({ slug: p.slug }));
+  try {
+    const items = await getProducts({ category: "hampers" });
+    return items.map((p) => ({ slug: p.slug }));
+  } catch {
+    return []; // BE tidak terjangkau saat build; halaman dirender saat diminta
+  }
 }
 
 export async function generateMetadata({ params }) {

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
+import ProductImage from "@/components/ProductImage";
 import { getProducts } from "@/lib/api/products";
 
 export const metadata = {
@@ -15,7 +15,7 @@ export default async function ProductPage() {
         {cookies.map((product) => (
           <Link key={product.id} href={`/produk/${product.slug}`}>
             <div className="rounded-2xl shadow p-4 flex flex-col items-center bg-white">
-              <Image
+              <ProductImage
                 src={product.thumbnail}
                 alt={product.name}
                 width={180}
