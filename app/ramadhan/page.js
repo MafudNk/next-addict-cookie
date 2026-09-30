@@ -1,6 +1,6 @@
 import Link from "next/link";
-import CategoryCards from "../components/CategoryCards";
-import Notice from "../components/Notice";
+import CategoryCards from "@/components/CategoryCards";
+import Notice from "@/components/Notice";
 export default function RamadhanLanding() {
   return (
     <main className="bg-[#FBF7F2] text-[#2E2E2E]">
