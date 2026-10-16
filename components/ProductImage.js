@@ -11,7 +11,7 @@ export default function ProductImage({ src, alt, ...props }) {
   return (
     <Image
       {...props}
-      src={failed ? FALLBACK : src}
+      src={failed || !src ? FALLBACK : src}
       alt={alt}
       onError={() => setFailed(true)}
     />

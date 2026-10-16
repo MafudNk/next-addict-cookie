@@ -38,8 +38,8 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 ## Struktur
 
-- `lib/catalog.js` – data statis sementara (bentuk = kontrak BE)
-- `lib/api/` – data layer; halaman hanya boleh mengambil data lewat sini
+- `lib/api/` – data layer ke backend (`backend-next-cookie`); halaman hanya boleh mengambil data lewat sini
+- `app/api/revalidate` – dipanggil BE untuk menyegarkan cache katalog
 - `lib/contracts.js` – validasi order · `docs/api-contract.md` – kontrak FE ⇄ BE
 - `components/` – komponen bersama; `CartProvider` menyimpan `{productId, qty}`
-- Salin `.env.example` ke `.env.local` untuk konfigurasi
+- Salin `.env.example` ke `.env.local`. **Jalankan backend lebih dulu** (port 3001), lalu `npm run dev`

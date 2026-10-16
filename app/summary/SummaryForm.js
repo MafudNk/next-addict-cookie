@@ -45,7 +45,7 @@ export default function SummaryForm({ products }) {
       try {
         sessionStorage.setItem(
           "lastOrder",
-          JSON.stringify({ orderCode: result.orderCode, waUrl: result.waUrl })
+          JSON.stringify({ orderCode: result.orderCode, total: result.total, waUrl: result.waUrl })
         );
       } catch {}
       if (waWindow) waWindow.location.href = result.waUrl;
@@ -54,6 +54,7 @@ export default function SummaryForm({ products }) {
     } catch (error) {
       waWindow?.close();
       alert(error.message);
+      router.refresh(); // muat ulang katalog bila penyebabnya ketersediaan/kuota
     } finally {
       setLoading(false);
     }
@@ -83,9 +84,10 @@ export default function SummaryForm({ products }) {
                 <span className="text-gray-900">{qty}</span>
                 <button
                   type="button"
+                  disabled={product.remaining != null && qty >= product.remaining}
                   onClick={() => cart.add(product.id, 1)}
                   aria-label={`Tambah ${product.name}`}
-                  className="bg-gray-200 px-2 rounded text-gray-900"
+                  className="bg-gray-200 px-2 rounded text-gray-900 disabled:opacity-40"
                 >
                   +
                 </button>

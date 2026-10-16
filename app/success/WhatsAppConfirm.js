@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from "react";
+import { formatRupiah } from "@/lib/format";
 
 // Cadangan bila tab WhatsApp otomatis tidak terbuka (popup diblokir).
 export default function WhatsAppConfirm() {
@@ -18,6 +19,11 @@ export default function WhatsAppConfirm() {
       <p className="text-sm text-gray-600">
         Order ID: <b className="text-gray-900">{order.orderCode}</b>
       </p>
+      {order.total != null && (
+        <p className="text-sm text-gray-600">
+          Total: <b className="text-gray-900">{formatRupiah(order.total)}</b>
+        </p>
+      )}
       <a
         href={order.waUrl}
         target="_blank"

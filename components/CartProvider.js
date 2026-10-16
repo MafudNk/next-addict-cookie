@@ -2,7 +2,7 @@
 
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 
-const STORAGE_KEY = "cart:v1";
+const STORAGE_KEY = "cart:v2"; // v2: id produk = UUID dari backend
 const CartContext = createContext(null);
 
 // Cart hanya menyimpan { productId, qty }. Nama & harga selalu dari katalog.

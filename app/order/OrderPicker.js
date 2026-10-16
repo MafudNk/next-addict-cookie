@@ -1,9 +1,10 @@
 'use client';
 
 import { useRouter } from "next/navigation";
-import Image from "next/image";
+import ProductImage from "@/components/ProductImage";
 import { useCart } from "@/components/CartProvider";
 import { formatRupiah } from "@/lib/format";
+import AvailabilityBadge from "@/components/AvailabilityBadge";
 
 export default function OrderPicker({ products }) {
   const router = useRouter();
@@ -22,16 +23,18 @@ export default function OrderPicker({ products }) {
     <>
       {products.map((p) => {
         const qty = cart.qtyOf(p.id);
+        const maxed = p.remaining != null && qty >= p.remaining;
         return (
           <div
             key={p.id}
             className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 py-3 border-b border-orange-100"
           >
             <div className="flex items-center gap-3">
-              <Image src={p.thumbnail} alt={p.name} width={64} height={64} className="w-16 h-16 object-cover rounded" />
+              <ProductImage src={p.thumbnail} alt={p.name} width={64} height={64} className="w-16 h-16 object-cover rounded" />
               <div>
                 <div className="font-semibold text-gray-900">{p.name}</div>
                 <div className="text-sm text-gray-700">{formatRupiah(p.price)}</div>
+                <AvailabilityBadge product={p} />
               </div>
             </div>
 
@@ -47,8 +50,9 @@ export default function OrderPicker({ products }) {
                 <span className="w-6 text-center font-medium text-gray-900">{qty}</span>
                 <button
                   onClick={() => cart.add(p.id, 1)}
+                  disabled={maxed}
                   aria-label={`Tambah ${p.name}`}
-                  className="bg-orange-500 text-white w-7 h-7 rounded"
+                  className="bg-orange-500 text-white w-7 h-7 rounded disabled:opacity-40 disabled:cursor-not-allowed"
                 >
                   +
                 </button>
