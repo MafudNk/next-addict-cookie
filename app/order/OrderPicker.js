@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import ProductImage from "@/components/ProductImage";
 import { useCart } from "@/components/CartProvider";
 import { formatRupiah } from "@/lib/format";
+import AvailabilityBadge from "@/components/AvailabilityBadge";
 
 export default function OrderPicker({ products }) {
   const router = useRouter();
@@ -22,6 +23,7 @@ export default function OrderPicker({ products }) {
     <>
       {products.map((p) => {
         const qty = cart.qtyOf(p.id);
+        const maxed = p.remaining != null && qty >= p.remaining;
         return (
           <div
             key={p.id}
@@ -32,6 +34,7 @@ export default function OrderPicker({ products }) {
               <div>
                 <div className="font-semibold text-gray-900">{p.name}</div>
                 <div className="text-sm text-gray-700">{formatRupiah(p.price)}</div>
+                <AvailabilityBadge product={p} />
               </div>
             </div>
 
@@ -47,8 +50,9 @@ export default function OrderPicker({ products }) {
                 <span className="w-6 text-center font-medium text-gray-900">{qty}</span>
                 <button
                   onClick={() => cart.add(p.id, 1)}
+                  disabled={maxed}
                   aria-label={`Tambah ${p.name}`}
-                  className="bg-orange-500 text-white w-7 h-7 rounded"
+                  className="bg-orange-500 text-white w-7 h-7 rounded disabled:opacity-40 disabled:cursor-not-allowed"
                 >
                   +
                 </button>

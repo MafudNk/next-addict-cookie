@@ -1,51 +1,37 @@
-import Link from "next/link";
-import ProductImage from "@/components/ProductImage";
+import ProductCard from "@/components/ProductCard";
+import { getCampaignProducts } from "@/lib/api/products";
 
-export const metadata = { title: "Ramadhan Signature" };
+export const metadata = { title: "Signature" };
 
-const CARDS = [
-  {
-    href: "/ramadhan/signature/signature-cookies",
-    image: "/images/signature_cookie.webp",
-    title: "Signature Cookies",
-    desc: "Aneka kue kering khas Lebaran",
-  },
-  {
-    href: "/ramadhan/signature/nastar-gold-butter",
-    image: "/images/signature/nastargold.webp",
-    title: "Nastar Gold Butter",
-    desc: "Butter premium, isian nanas lembut",
-  },
-  {
-    href: "/ramadhan/signature/luxe-chocolate-bite",
-    image: "/images/signature/luxe.webp",
-    title: "Luxe Chocolate Bite",
-    desc: "Chocolate cookies premium",
-  },
-];
+const humanize = (slug) => slug.split("-").map((w) => w[0].toUpperCase() + w.slice(1)).join(" ");
 
-export default function SignatureIndex() {
+export default async function SignaturePage() {
+  const { campaign, products } = await getCampaignProducts("signature");
+
+  // Kelompokkan per koleksi (data dari BE), bukan daftar kartu yang ditulis di kode.
+  const groups = new Map();
+  for (const p of products) groups.set(p.collection ?? "", [...(groups.get(p.collection ?? "") ?? []), p]);
+  const sections = [...groups.entries()];
+
   return (
     <main className="bg-orange-50 px-4 md:px-20 py-12">
-      <h1 className="text-3xl font-bold mb-10 text-center text-gray-900">🌙 Ramadhan Signature</h1>
+      <h1 className="text-3xl font-bold mb-2 text-center text-gray-900">🌙 Signature</h1>
+      {campaign && <p className="text-center text-gray-600 mb-10">{campaign.name}</p>}
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-        {CARDS.map((c) => (
-          <Link key={c.href} href={c.href}>
-            <div className="rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition">
-              <ProductImage
-                src={c.image}
-                alt={c.title}
-                width={500}
-                height={500}
-                className="w-full h-56 md:h-64 object-cover"
-              />
-              <div className="bg-white p-4 text-center">
-                <h3 className="font-semibold text-lg mb-1 text-gray-900">{c.title}</h3>
-                <p className="text-sm text-gray-600">{c.desc}</p>
-              </div>
+      {sections.length === 0 && <p className="text-center text-gray-600">Belum ada produk signature untuk campaign ini.</p>}
+
+      <div className="space-y-12 max-w-6xl mx-auto">
+        {sections.map(([collection, items]) => (
+          <section key={collection || "lainnya"}>
+            {sections.length > 1 && collection && (
+              <h2 className="text-xl font-semibold text-gray-900 mb-4">{humanize(collection)}</h2>
+            )}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+              {items.map((p) => (
+                <ProductCard key={p.id} product={p} />
+              ))}
             </div>
-          </Link>
+          </section>
         ))}
       </div>
     </main>

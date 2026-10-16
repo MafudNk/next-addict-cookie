@@ -1,28 +1,28 @@
-import Link from "next/link";
-import ProductImage from "@/components/ProductImage";
-import { getProducts } from "@/lib/api/products";
+import ProductCard from "@/components/ProductCard";
+import { getCampaignProducts } from "@/lib/api/products";
 
-export const metadata = { title: "Hampers Ramadhan" };
+export const metadata = { title: "Hampers" };
 
 export default async function HampersPage() {
-  const hampers = await getProducts({ category: "hampers" });
+  const { campaign, products } = await getCampaignProducts("hampers");
 
   return (
     <main className="bg-orange-50 px-4 md:px-20 py-12">
-      <h1 className="text-3xl font-bold text-gray-900 mb-10">🎁 Hampers Ramadhan</h1>
+      <h1 className="text-3xl font-bold text-gray-900 mb-2 text-center">🎁 Hampers</h1>
+      {campaign && <p className="text-center text-gray-600 mb-10">{campaign.name}</p>}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-        {hampers.map((h) => (
-          <Link key={h.id} href={`/ramadhan/hampers/${h.slug}`}>
-            <div className="bg-white rounded-3xl shadow-sm p-4 hover:shadow-md transition">
-              <ProductImage src={h.thumbnail} alt={h.name} width={500} height={500} className="rounded-2xl mb-4" />
-              <h3 className="text-xl font-semibold text-gray-900">{h.name}</h3>
-              <p className="text-sm text-gray-600 mt-2">{h.description}</p>
-              <p className="text-xs text-red-500 mt-3">Kuota terbatas ({h.quota} box)</p>
+      {products.length === 0 ? (
+        <p className="text-center text-gray-600">Belum ada hampers untuk campaign ini.</p>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          {products.map((p) => (
+            <div key={p.id}>
+              <ProductCard product={p} />
+              {p.quota != null && <p className="text-xs text-red-500 mt-2 text-center">Kuota terbatas ({p.quota} box)</p>}
             </div>
-          </Link>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </main>
   );
 }

@@ -1,6 +1,8 @@
 import Link from "next/link";
 import ProductImage from "@/components/ProductImage";
 import { getProducts } from "@/lib/api/products";
+import AvailabilityBadge from "@/components/AvailabilityBadge";
+import { formatRupiah } from "@/lib/format";
 
 export const metadata = {
   title: "Produk",
@@ -23,6 +25,8 @@ export default async function ProductPage() {
                 className="object-cover rounded-full mx-auto"
               />
               <h3 className="text-lg font-semibold text-center text-gray-900">{product.name}</h3>
+              <p className="text-sm text-gray-600">{formatRupiah(product.price)}</p>
+              <AvailabilityBadge product={product} className="mt-2" />
             </div>
           </Link>
         ))}

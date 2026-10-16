@@ -1,5 +1,5 @@
 import Image from "next/image";
-import RamadhanTeaser from "@/components/RamadhanTeaser";
+import CampaignTeaser from "@/components/CampaignTeaser";
 import HeroCarousel from "@/components/home/HeroCarousel";
 import ProductCarousel from "@/components/home/ProductCarousel";
 import { getProducts } from "@/lib/api/products";
@@ -46,7 +46,7 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
-      <RamadhanTeaser />
+      <CampaignTeaser />
       <ProductCarousel products={softCookies} />
     </>
   );

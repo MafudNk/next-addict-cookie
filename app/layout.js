@@ -13,12 +13,12 @@ const geistSans = Geist({
 });
 
 const description =
-  "Soft cookies handmade, hampers Ramadhan & Lebaran edisi terbatas dari Addict Bite Cookie. Pre-order dengan kuota terbatas.";
+  "Soft cookies handmade dan hampers edisi terbatas dari Addict Bite Cookie. Pre-order dengan kuota terbatas.";
 
 export const metadata = {
   ...(SITE_URL && { metadataBase: new URL(SITE_URL) }),
   title: {
-    default: `${SITE_NAME} | Soft Cookies & Hampers Lebaran`,
+    default: `${SITE_NAME} | Soft Cookies & Hampers`,
     template: `%s | ${SITE_NAME}`,
   },
   description,
